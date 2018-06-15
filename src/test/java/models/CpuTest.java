@@ -21,7 +21,8 @@ public class CpuTest {
 
     @Test
     public void getSeries() {
-
+        Cpu testCpu = setupCpu();
+        assertEquals("RYZEN 7", testCpu.getSeries());
     }
 
     @Test
