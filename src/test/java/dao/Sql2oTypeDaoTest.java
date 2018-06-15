@@ -69,6 +69,10 @@ public class Sql2oTypeDaoTest {
 
     @Test
     public void deleteById() {
+        Type type = setupType();
+        typeDao.add(type);
+        typeDao.deleteById(type.getId());
+        assertEquals(0, typeDao.getAll().size());
     }
 
     @Test
