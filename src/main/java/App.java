@@ -6,6 +6,10 @@ import exceptions.ApiException;
 import models.*;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import static spark.Spark.*;
 
 public class App {
@@ -45,8 +49,55 @@ public class App {
            Part part = gson.fromJson(request.body(), Part.class);
            partDao.add(part);
            response.status(201);
-           response.type("application/json");
            return gson.toJson(part);
+        });
+
+        post("/types/new", "application/json", (request, response) -> {
+           Type type = gson.fromJson(request.body(), Type.class);
+           typeDao.add(type);
+           response.status(201);
+           return gson.toJson(type);
+        });
+
+        post("/parts/:partId/reviews/new", "application/json", (request, response) -> {
+           int partId = Integer.parseInt(request.params("partId"));
+           Review review = gson.fromJson(request.body(), Review.class);
+           review.setCreatedAt();
+           review.setFormattedCreatedAt();
+           review.setPartId(partId);
+           reviewDao.add(review);
+           response.status(201);
+           return gson.toJson(review);
+        });
+
+        post("/parts/:partId/type/:typeId", "application/json", (request, response) -> {
+            int partId = Integer.parseInt(request.params("partId"));
+            int typeId = Integer.parseInt(request.params("typeId"));
+            Part part = partDao.findById(partId);
+            Type type = typeDao.findById(typeId);
+            if (part != null && type != null) {
+                typeDao.addTypeToPart(type, part);
+                response.status(201);
+                return gson.toJson(String.format("Part '%s' and Type '%s' have been associated", part.getSeries(), type.getName()));
+            } else {
+                throw new ApiException(404, String.format("Part or Type does not exist"));
+            }
+        });
+
+
+        //Filters
+        exception(ApiException.class, (exception, request, response) -> {
+            ApiException err = (ApiException) exception;
+            Map<String, Object> jsonMap = new HashMap<>();
+            jsonMap.put("status", err.getStatusCode());
+            jsonMap.put("errorMessage", err.getMessage());
+            response.type("application/json");
+            response.status(err.getStatusCode());
+            response.body(gson.toJson(jsonMap));
+        });
+
+        after((request, response) -> {
+            response.type("application/json");
         });
     }
 }
