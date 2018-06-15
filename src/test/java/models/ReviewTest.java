@@ -39,6 +39,13 @@ public class ReviewTest {
         assertEquals(4, review.getRating());
     }
 
+    @Test
+    public void setRating() {
+        Review review = setupReview();
+        review.setRating(1);
+        assertEquals(1, review.getRating());
+    }
+
     //helper
     public Review setupReview() {
         return new Review("Works great!", "John", 4, 1);
