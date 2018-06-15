@@ -4,7 +4,6 @@ import models.*;
 import org.junit.*;
 import org.sql2o.*;
 
-import java.util.Arrays;
 
 
 import static org.junit.Assert.*;
@@ -58,17 +57,6 @@ public class Sql2oCpuDaoTest {
         assertEquals(cpu1, cpuDao.findById(cpu1.getId()));
     }
 
-//    @Test
-//    public void update() {
-//        Cpu cpu = setupCpu();
-//        cpuDao.update(cpu.getId(), "Intel", "Core i9", "4.2GHz", 6, 230);
-//        Cpu foundCpu = cpuDao.findById(cpu.getId());
-//        assertEquals("Intel", foundCpu.getManufacturer());
-//        assertEquals("Core i9", foundCpu.getSeries());
-//        assertEquals("4.2GHz", foundCpu.getSpeed());
-//        assertEquals(6, foundCpu.getCores());
-//        assertEquals(230, foundCpu.getPrice());
-//    }
 
     @Test
     public void deleteById() {
