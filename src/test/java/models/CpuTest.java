@@ -40,6 +40,9 @@ public class CpuTest {
 
     @Test
     public void setSpeed() {
+        Cpu testCpu = setupCpu();
+        testCpu.setSpeed("4.2GHz");
+        assertEquals("4.2GHz", testCpu.getSpeed());
     }
 
     @Test
