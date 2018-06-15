@@ -40,6 +40,11 @@ public class Sql2oCpuDaoTest {
     }
 
     @Test
+    public void getAllForNoEntry() {
+        assertEquals(0, cpuDao.getAll().size());
+    }
+
+    @Test
     public void getAll() {
     }
 
