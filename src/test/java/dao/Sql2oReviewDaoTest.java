@@ -51,6 +51,13 @@ public class Sql2oReviewDaoTest {
 
     @Test
     public void getAllReviewsByPartId() {
+        Part part1 = setupPart();
+        Part part2 = setupPart();
+        part2.setId(33);
+        Review review1 = setupReviewForPart(part1);
+        Review review2 = setupReviewForPart(part1);
+        Review review3 = setupReviewForPart(part2);
+        assertEquals(2, reviewDao.getAllReviewsByPartId(part1.getId()).size());
     }
 
     @Test
