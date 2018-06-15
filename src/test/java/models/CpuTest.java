@@ -47,6 +47,8 @@ public class CpuTest {
 
     @Test
     public void getCores() {
+        Cpu testCpu = setupCpu();
+        assertEquals(8, testCpu.getCores());
     }
 
     @Test
