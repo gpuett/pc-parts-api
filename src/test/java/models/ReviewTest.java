@@ -26,6 +26,13 @@ public class ReviewTest {
         assertEquals("John", review.getWrittenBy());
     }
 
+    @Test
+    public void setWrittenBy() {
+        Review review = setupReview();
+        review.setWrittenBy("Kim");
+        assertNotEquals("John", review.getWrittenBy());
+    }
+
     //helper
     public Review setupReview() {
         return new Review("Works great!", "John", 4, 1);
