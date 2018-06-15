@@ -46,6 +46,9 @@ public class Sql2oCpuDaoTest {
 
     @Test
     public void getAll() {
+        Cpu cpu1 = setupCpu();
+        Cpu cpu2 = setupCpu();
+        assertEquals(2, cpuDao.getAll().size());
     }
 
     @Test
