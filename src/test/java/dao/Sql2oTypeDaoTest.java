@@ -76,7 +76,13 @@ public class Sql2oTypeDaoTest {
     }
 
     @Test
-    public void clearAll() {
+    public void deletingTypeUpdateJoinTable() {
+        Type type = setupType();
+        typeDao.add(type);
+        Part part = setupPart();
+        typeDao.addTypeToPart(type, part);
+        typeDao.deleteById(type.getId());
+        assertEquals(0, typeDao.getAllPartsByType(type.getId()).size());
     }
 
     //helpers
