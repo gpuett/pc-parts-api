@@ -33,6 +33,12 @@ public class ReviewTest {
         assertNotEquals("John", review.getWrittenBy());
     }
 
+    @Test
+    public void getRating() {
+        Review review = setupReview();
+        assertEquals(4, review.getRating());
+    }
+
     //helper
     public Review setupReview() {
         return new Review("Works great!", "John", 4, 1);

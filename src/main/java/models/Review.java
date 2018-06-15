@@ -9,58 +9,19 @@ public class Review implements Comparable<Review> {
     private String writtenBy;
     private int rating;
     private int id;
-    private int cpuId;
-    private int gpuId;
-    private int memoryId;
-    private int motherboardId;
-    private int storageId;
+    private int partId;
     private long createdAt;
     private String formattedCreatedAt;
 
-    public Review(String content, String writtenBy, int rating, int cpuId) {
+    public Review(String content, String writtenBy, int rating, int partId) {
         this.content = content;
         this.writtenBy = writtenBy;
         this.rating = rating;
-        this.cpuId = cpuId;
+        this.partId = partId;
         setCreatedAt();
         setFormattedCreatedAt();
     }
 
-//    public Review(String content, String writtenBy, int rating, int gpuId) {
-//        this.content = content;
-//        this.writtenBy = writtenBy;
-//        this.rating = rating;
-//        this.gpuId = gpuId;
-//        setCreatedAt();
-//        setFormattedCreatedAt();
-//    }
-
-//    public Review(String content, String writtenBy, int rating, int memoryId) {
-//        this.content = content;
-//        this.writtenBy = writtenBy;
-//        this.rating = rating;
-//        this.memoryId = memoryId;
-//        setCreatedAt();
-//        setFormattedCreatedAt();
-//    }
-//
-//    public Review(String content, String writtenBy, int rating, int motherboardId) {
-//        this.content = content;
-//        this.writtenBy = writtenBy;
-//        this.rating = rating;
-//        this.motherboardId = motherboardId;
-//        setCreatedAt();
-//        setFormattedCreatedAt();
-//    }
-//
-//    public Review(String content, String writtenBy, int rating, int storageId) {
-//        this.content = content;
-//        this.writtenBy = writtenBy;
-//        this.rating = rating;
-//        this.storageId = storageId;
-//        setCreatedAt();
-//        setFormattedCreatedAt();
-//    }
 
     @Override
     public int compareTo(Review reviewObject) {
@@ -105,44 +66,12 @@ public class Review implements Comparable<Review> {
         this.id = id;
     }
 
-    public int getCpuId() {
-        return cpuId;
+    public int getPartId() {
+        return partId;
     }
 
-    public void setCpuId(int cpuId) {
-        this.cpuId = cpuId;
-    }
-
-    public int getGpuId() {
-        return gpuId;
-    }
-
-    public void setGpuId(int gpuId) {
-        this.gpuId = gpuId;
-    }
-
-    public int getMemoryId() {
-        return memoryId;
-    }
-
-    public void setMemoryId(int memoryId) {
-        this.memoryId = memoryId;
-    }
-
-    public int getMotherboardId() {
-        return motherboardId;
-    }
-
-    public void setMotherboardId(int motherboardId) {
-        this.motherboardId = motherboardId;
-    }
-
-    public int getStorageId() {
-        return storageId;
-    }
-
-    public void setStorageId(int storageId) {
-        this.storageId = storageId;
+    public void setPartId(int partId) {
+        this.partId = partId;
     }
 
     public long getCreatedAt() {
@@ -174,11 +103,7 @@ public class Review implements Comparable<Review> {
         Review review = (Review) o;
         return rating == review.rating &&
                 id == review.id &&
-                cpuId == review.cpuId &&
-                gpuId == review.gpuId &&
-                memoryId == review.memoryId &&
-                motherboardId == review.motherboardId &&
-                storageId == review.storageId &&
+                partId == review.partId &&
                 createdAt == review.createdAt &&
                 Objects.equals(content, review.content) &&
                 Objects.equals(writtenBy, review.writtenBy) &&
@@ -188,6 +113,6 @@ public class Review implements Comparable<Review> {
     @Override
     public int hashCode() {
 
-        return Objects.hash(content, writtenBy, rating, id, cpuId, gpuId, memoryId, motherboardId, storageId, createdAt, formattedCreatedAt);
+        return Objects.hash(content, writtenBy, rating, id, partId, createdAt, formattedCreatedAt);
     }
 }
