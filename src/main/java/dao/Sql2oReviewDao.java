@@ -57,9 +57,13 @@ public class Sql2oReviewDao implements ReviewDao {
     @Override
     public void deleteById(int id) {
         String sql = "DELETE from reviews WHERE id = :id";
+        String deleteJoin = "DELETE from parts_types WHERE partid = :partId";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("id", id)
+                    .executeUpdate();
+            con.createQuery(deleteJoin)
+                    .addParameter("partId", id)
                     .executeUpdate();
         } catch (Sql2oException ex) {
             System.out.println(ex);
