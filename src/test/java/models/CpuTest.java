@@ -34,6 +34,8 @@ public class CpuTest {
 
     @Test
     public void getSpeed() {
+        Cpu testCpu = setupCpu();
+        assertEquals("3.4GHz", testCpu.getSpeed());
     }
 
     @Test
