@@ -14,10 +14,14 @@ public class CpuTest {
 
     @Test
     public void setManufacturer() {
+        Cpu testCpu = setupCpu();
+        testCpu.setManufacturer("Intel");
+        assertEquals("Intel", testCpu.getManufacturer());
     }
 
     @Test
     public void getSeries() {
+
     }
 
     @Test
