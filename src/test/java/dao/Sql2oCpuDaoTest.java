@@ -53,6 +53,9 @@ public class Sql2oCpuDaoTest {
 
     @Test
     public void findById() {
+        Cpu cpu1 = setupCpu();
+        Cpu cpu2 = setupCpu();
+        assertEquals(cpu1, cpuDao.findById(cpu1.getId()));
     }
 
     @Test
