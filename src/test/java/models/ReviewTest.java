@@ -52,6 +52,13 @@ public class ReviewTest {
         assertEquals(1, review.getPartId());
     }
 
+    @Test
+    public void name() {
+        Review review = setupReview();
+        review.setPartId(3);
+        assertEquals(3, review.getPartId());
+    }
+
     //helper
     public Review setupReview() {
         return new Review("Works great!", "John", 4, 1);
