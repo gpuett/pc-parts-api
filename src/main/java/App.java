@@ -36,10 +36,10 @@ public class App {
         Sql2o sql2o;
         if(isProduction) {
             String connectionString = "jdbc:postgresql://ec2-107-21-255-2.compute-1.amazonaws.com:5432:dbfktgojsojurp";
-            sql2o = new Sql2o(connectionString, null, null); //change with heroku deployment
+            sql2o = new Sql2o(connectionString, "cpxgxeppylxbtd", "9056aa2af00e376bb95351123e29a3dfe9f9d54cf42c669497a6f4c66c13467e"); //change with heroku deployment
         } else {
             String connectionString = "jdbc:postgresql://localhost:5432/pc_parts";
-            sql2o = new Sql2o(connectionString, "cpxgxeppylxbtd", "9056aa2af00e376bb95351123e29a3dfe9f9d54cf42c669497a6f4c66c13467e");
+            sql2o = new Sql2o(connectionString, null, null);
         }
         partDao = new Sql2OPartDao(sql2o);
         typeDao = new Sql2oTypeDao(sql2o);
