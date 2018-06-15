@@ -14,6 +14,9 @@ public class TypeTest {
 
     @Test
     public void setName() {
+        Type type = setupType();
+        type.setName("Motherboard");
+        assertEquals("Motherboard", type.getName());
     }
 
     @Test
