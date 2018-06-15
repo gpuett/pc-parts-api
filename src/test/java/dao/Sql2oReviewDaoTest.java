@@ -60,12 +60,14 @@ public class Sql2oReviewDaoTest {
         assertEquals(2, reviewDao.getAllReviewsByPartId(part1.getId()).size());
     }
 
-    @Test
-    public void findById() {
-    }
 
     @Test
     public void deleteById() {
+        Review review1 = setupReview();
+        Review review2 = setupReview();
+        assertEquals(2, reviewDao.getAll().size());
+        reviewDao.deleteById(review1.getId());
+        assertEquals(1, reviewDao.getAll().size());
     }
 
     @Test
