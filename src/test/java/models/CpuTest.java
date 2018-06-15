@@ -27,6 +27,9 @@ public class CpuTest {
 
     @Test
     public void setSeries() {
+        Cpu testCpu = setupCpu();
+        testCpu.setSeries("Core i9");
+        assertEquals("Core i9", testCpu.getSeries());
     }
 
     @Test
