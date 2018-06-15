@@ -93,6 +93,25 @@ public class Sql2oReviewDaoTest {
 
     @Test
     public void getAllReviewsByPartSortedNewestToOldest() {
+        Part part = setupPart();
+        Review review1 = new Review("great", "kim", 4, part.getId());
+        reviewDao.add(review1);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+        Review review2 = new Review("junk", "joe", 1, part.getId());
+        reviewDao.add(review2);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+        Review review3 = new Review("okay", "sam", 2, part.getId());
+        reviewDao.add(review3);
+        assertEquals(3, reviewDao.getAllReviewsByPartId(part.getId()).size());
+        assertEquals("okay", reviewDao.getAllReviewsByPartSortedNewestToOldest(part.getId()).get(0).getContent());
     }
 
     //helpers
