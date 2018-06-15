@@ -15,7 +15,7 @@ public class Sql2OPartDao implements PartDao {
 
     @Override
     public void add(Part part) {
-        String sql = "INSERT INTO cpus (manufacturer, series, speed, cores, price) VALUES (:manufacturer, :series, :speed, :cores, :price)";
+        String sql = "INSERT INTO parts (manufacturer, series, price) VALUES (:manufacturer, :series, :price)";
         try (Connection con = sql2o.open()) {
             int id = (int) con.createQuery(sql, true)
                     .bind(part)
@@ -30,14 +30,14 @@ public class Sql2OPartDao implements PartDao {
     @Override
     public List<Part> getAll() {
         try (Connection con = sql2o.open()) {
-            return con.createQuery("SELECT * FROM cpus").executeAndFetch(Part.class);
+            return con.createQuery("SELECT * FROM parts").executeAndFetch(Part.class);
         }
     }
 
     @Override
     public Part findById(int id) {
         try (Connection con = sql2o.open()) {
-            return con.createQuery("SELECT * FROM cpus WHERE id = :id")
+            return con.createQuery("SELECT * FROM parts WHERE id = :id")
                     .addParameter("id", id)
                     .executeAndFetchFirst(Part.class);
         }
@@ -46,7 +46,7 @@ public class Sql2OPartDao implements PartDao {
 
     @Override
     public void deleteById(int id) {
-        String sql = "DELETE from cpus WHERE id = :id";
+        String sql = "DELETE from parts WHERE id = :id";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("id", id)
@@ -58,7 +58,7 @@ public class Sql2OPartDao implements PartDao {
 
     @Override
     public void clearAll() {
-        String sql = "DELETE from cpus";
+        String sql = "DELETE from parts";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql).executeUpdate();
         } catch (Sql2oException ex) {
