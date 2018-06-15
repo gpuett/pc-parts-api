@@ -53,6 +53,9 @@ public class CpuTest {
 
     @Test
     public void setCores() {
+        Cpu testCpu = setupCpu();
+        testCpu.setCores(6);
+        assertEquals(6, testCpu.getCores());
     }
 
     @Test
