@@ -8,6 +8,7 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static spark.Spark.*;
@@ -82,6 +83,61 @@ public class App {
             } else {
                 throw new ApiException(404, String.format("Part or Type does not exist"));
             }
+        });
+
+        get("/parts", "application/json", (request, response) -> {
+            System.out.println(partDao.getAll());
+            if(partDao.getAll().size() > 0) {
+                return gson.toJson(partDao.getAll());
+            } else {
+                return "{\"message\":\"I'm sorry, but no parts are currently listed in the database.\"}";
+            }
+        });
+
+        get("/parts/:id", "application/json", (request, response) -> {
+            int partId = Integer.parseInt(request.params("id"));
+            Part partToFind = partDao.findById(partId);
+            if(partToFind == null) {
+                throw new ApiException(404, String.format("No part with id: '%s' exists", request.params("id")));
+            }
+            return gson.toJson(partToFind);
+        });
+
+        get("types", "application/json", (request, response) -> {
+            return gson.toJson(typeDao.getAll());
+        });
+
+        get("/parts/:partId/reviews", "application/json", (request, response) -> {
+            int partId = Integer.parseInt(request.params("partId"));
+            Part partToFind = partDao.findById(partId);
+            if(partToFind == null) {
+                throw new ApiException(404, String.format("No part with id: '%s' exists", request.params("partId")));
+            }
+            List<Review> allReviews = reviewDao.getAllReviewsByPartId(partId);
+            return gson.toJson(allReviews);
+        });
+
+        get("/types/:id/parts", "application/json", (request, response) -> {
+            int typeId = Integer.parseInt(request.params("id"));
+            Type typeToFind = typeDao.findById(typeId);
+            if (typeToFind == null) {
+                throw new ApiException(404, String.format("No type with id: '%s' exists", request.params("id")));
+            } else if (typeDao.getAllPartsByType(typeId).size() == 0) {
+                return "{\"message\":\"I'm sorry, but no parts are listed for this type.\"}";
+            } else {
+                return gson.toJson(typeDao.getAllPartsByType(typeId));
+            }
+        });
+
+        get("parts/:id/sortedReviews", "application/json", (request, response) -> {
+            int partId = Integer.parseInt(request.params("id"));
+            Part partToFind = partDao.findById(partId);
+            List<Review> allReviews;
+            if(partToFind == null) {
+                throw new ApiException(404, String.format("No part with id: '%s' exists", request.params("id")));
+            }
+            allReviews = reviewDao.getAllReviewsByPartSortedNewestToOldest(partId);
+            return gson.toJson(allReviews);
         });
 
 
