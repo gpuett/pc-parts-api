@@ -72,6 +72,10 @@ public class Sql2oReviewDaoTest {
 
     @Test
     public void clearAll() {
+        Review review1 = setupReview();
+        Review review2 = setupReview();
+        reviewDao.clearAll();
+        assertEquals(0, reviewDao.getAll().size());
     }
 
     @Test
