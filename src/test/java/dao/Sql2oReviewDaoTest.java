@@ -79,6 +79,19 @@ public class Sql2oReviewDaoTest {
     }
 
     @Test
+    public void timeStampIsReturnedCorrectly() {
+        Part part = setupPart();
+        Review review = new Review("great", "kim", 4, part.getId());
+        reviewDao.add(review);
+        long creationTime = review.getCreatedAt();
+        long savedTime = reviewDao.getAll().get(0).getCreatedAt();
+        String formattedCreationTime = review.getFormattedCreatedAt();
+        String formattedSavedTime = reviewDao.getAll().get(0).getFormattedCreatedAt();
+        assertEquals(formattedCreationTime, formattedSavedTime);
+        assertEquals(creationTime, savedTime);
+    }
+
+    @Test
     public void getAllReviewsByPartSortedNewestToOldest() {
     }
 
