@@ -59,12 +59,12 @@ public class Sql2oTypeDaoTest {
         assertEquals(1, typeDao.getAll().size());
     }
 
-    @Test
-    public void getAllPartsByType() {
-    }
 
     @Test
     public void findById() {
+        Type type = setupType();
+        typeDao.add(type);
+        assertEquals(type, typeDao.findById(type.getId()));
     }
 
     @Test
