@@ -43,6 +43,13 @@ public class Sql2oTypeDaoTest {
 
     @Test
     public void addTypeToPart() {
+        Part part1 = setupPart();
+        Part part2 = setupPart();
+        Type type = setupType();
+        typeDao.add(type);
+        typeDao.addTypeToPart(type, part1);
+        typeDao.addTypeToPart(type, part2);
+        assertEquals(2, typeDao.getAllPartsByType(type.getId()).size());
     }
 
     @Test
