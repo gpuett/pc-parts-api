@@ -2,19 +2,15 @@ package models;
 
 import java.util.Objects;
 
-public class Cpu {
+public class Part {
     private String manufacturer;
     private String series;
-    private String speed;
-    private int cores;
     private int price;
     private int id;
 
-    public Cpu(String manufacturer, String series, String speed, int cores, int price) {
+    public Part(String manufacturer, String series, int price) {
         this.manufacturer = manufacturer;
         this.series = series;
-        this.speed = speed;
-        this.cores = cores;
         this.price = price;
     }
 
@@ -34,21 +30,6 @@ public class Cpu {
         this.series = series;
     }
 
-    public String getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(String speed) {
-        this.speed = speed;
-    }
-
-    public int getCores() {
-        return cores;
-    }
-
-    public void setCores(int cores) {
-        this.cores = cores;
-    }
 
     public int getPrice() {
         return price;
@@ -70,18 +51,16 @@ public class Cpu {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Cpu cpu = (Cpu) o;
-        return cores == cpu.cores &&
-                Double.compare(cpu.price, price) == 0 &&
-                id == cpu.id &&
-                Objects.equals(manufacturer, cpu.manufacturer) &&
-                Objects.equals(series, cpu.series) &&
-                Objects.equals(speed, cpu.speed);
+        Part part = (Part) o;
+        return price == part.price &&
+                id == part.id &&
+                Objects.equals(manufacturer, part.manufacturer) &&
+                Objects.equals(series, part.series);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(manufacturer, series, speed, cores, price, id);
+        return Objects.hash(manufacturer, series, price, id);
     }
 }

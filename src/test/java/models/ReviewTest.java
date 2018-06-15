@@ -22,6 +22,6 @@ public class ReviewTest {
 
     //helper
     public Review setupReview() {
-        return new Review("Works great!", "John", 4);
+        return new Review("Works great!", "John", 4, 1);
     }
 }

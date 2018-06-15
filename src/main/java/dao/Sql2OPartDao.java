@@ -1,45 +1,45 @@
 package dao;
 
-import models.Cpu;
+import models.Part;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
 
 import java.util.List;
 
-public class Sql2oCpuDao implements CpuDao {
+public class Sql2OPartDao implements PartDao {
     private final Sql2o sql2o;
-    public Sql2oCpuDao(Sql2o sql2o) {
+    public Sql2OPartDao(Sql2o sql2o) {
         this.sql2o = sql2o;
     }
 
     @Override
-    public void add(Cpu cpu) {
+    public void add(Part part) {
         String sql = "INSERT INTO cpus (manufacturer, series, speed, cores, price) VALUES (:manufacturer, :series, :speed, :cores, :price)";
         try (Connection con = sql2o.open()) {
             int id = (int) con.createQuery(sql, true)
-                    .bind(cpu)
+                    .bind(part)
                     .executeUpdate()
                     .getKey();
-            cpu.setId(id);
+            part.setId(id);
         } catch (Sql2oException ex) {
             System.out.println(ex);
         }
     }
 
     @Override
-    public List<Cpu> getAll() {
+    public List<Part> getAll() {
         try (Connection con = sql2o.open()) {
-            return con.createQuery("SELECT * FROM cpus").executeAndFetch(Cpu.class);
+            return con.createQuery("SELECT * FROM cpus").executeAndFetch(Part.class);
         }
     }
 
     @Override
-    public Cpu findById(int id) {
+    public Part findById(int id) {
         try (Connection con = sql2o.open()) {
             return con.createQuery("SELECT * FROM cpus WHERE id = :id")
                     .addParameter("id", id)
-                    .executeAndFetchFirst(Cpu.class);
+                    .executeAndFetchFirst(Part.class);
         }
     }
 

@@ -17,10 +17,11 @@ public class Review implements Comparable<Review> {
     private long createdAt;
     private String formattedCreatedAt;
 
-    public Review(String content, String writtenBy, int rating) {
+    public Review(String content, String writtenBy, int rating, int cpuId) {
         this.content = content;
         this.writtenBy = writtenBy;
         this.rating = rating;
+        this.cpuId = cpuId;
         setCreatedAt();
         setFormattedCreatedAt();
     }
