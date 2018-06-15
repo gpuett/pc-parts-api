@@ -60,6 +60,8 @@ public class CpuTest {
 
     @Test
     public void getPrice() {
+        Cpu testCpu = setupCpu();
+        assertEquals(219.99, testCpu.getPrice(), 0);
     }
 
     @Test
