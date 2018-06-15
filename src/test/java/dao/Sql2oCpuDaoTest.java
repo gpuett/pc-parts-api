@@ -58,21 +58,37 @@ public class Sql2oCpuDaoTest {
         assertEquals(cpu1, cpuDao.findById(cpu1.getId()));
     }
 
-    @Test
-    public void update() {
-    }
+//    @Test
+//    public void update() {
+//        Cpu cpu = setupCpu();
+//        cpuDao.update(cpu.getId(), "Intel", "Core i9", "4.2GHz", 6, 230);
+//        Cpu foundCpu = cpuDao.findById(cpu.getId());
+//        assertEquals("Intel", foundCpu.getManufacturer());
+//        assertEquals("Core i9", foundCpu.getSeries());
+//        assertEquals("4.2GHz", foundCpu.getSpeed());
+//        assertEquals(6, foundCpu.getCores());
+//        assertEquals(230, foundCpu.getPrice());
+//    }
 
     @Test
     public void deleteById() {
+        Cpu cpu1 = setupCpu();
+        Cpu cpu2 = setupCpu();
+        cpuDao.deleteById(cpu1.getId());
+        assertEquals(1, cpuDao.getAll().size());
     }
 
     @Test
     public void clearAll() {
+        Cpu cpu1 = setupCpu();
+        Cpu cpu2 = setupCpu();
+        cpuDao.clearAll();
+        assertEquals(0, cpuDao.getAll().size());
     }
 
     //helper
     public Cpu setupCpu () {
-        Cpu cpu = new Cpu("AMD", "RYZEN 7", "3.4GHz", 8, 219.99);
+        Cpu cpu = new Cpu("AMD", "RYZEN 7", "3.4GHz", 8, 219);
         cpuDao.add(cpu);
         return cpu;
     }

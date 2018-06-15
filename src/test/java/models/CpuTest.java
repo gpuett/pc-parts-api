@@ -61,19 +61,19 @@ public class CpuTest {
     @Test
     public void getPrice() {
         Cpu testCpu = setupCpu();
-        assertEquals(219.99, testCpu.getPrice(), 0);
+        assertEquals(219, testCpu.getPrice(), 0);
     }
 
     @Test
     public void setPrice() {
         Cpu testCpu = setupCpu();
-        testCpu.setPrice(249.99);
-        assertEquals(249.99, testCpu.getPrice(), 0);
+        testCpu.setPrice(250);
+        assertEquals(250, testCpu.getPrice(), 0);
     }
 
 
     //helper
     public Cpu setupCpu () {
-        return new Cpu("AMD", "RYZEN 7", "3.4GHz", 8, 219.99);
+        return new Cpu("AMD", "RYZEN 7", "3.4GHz", 8, 219);
     }
 }

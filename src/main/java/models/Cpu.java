@@ -7,10 +7,10 @@ public class Cpu {
     private String series;
     private String speed;
     private int cores;
-    private double price;
+    private int price;
     private int id;
 
-    public Cpu(String manufacturer, String series, String speed, int cores, double price) {
+    public Cpu(String manufacturer, String series, String speed, int cores, int price) {
         this.manufacturer = manufacturer;
         this.series = series;
         this.speed = speed;
@@ -50,11 +50,11 @@ public class Cpu {
         this.cores = cores;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

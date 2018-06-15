@@ -44,7 +44,7 @@ public class Sql2oCpuDao implements CpuDao {
     }
 
     @Override
-    public void update(int id, String newManufacturer, String newSeries, String newSpeed, int newCores, double newPrice) {
+    public void update(int id, String newManufacturer, String newSeries, String newSpeed, int newCores, int newPrice) {
         String sql = "UPDATE cpus SET (manufacturer, series, speed, cores, price) = (:manufacturer, :series, :speed, :cores, :price)";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)

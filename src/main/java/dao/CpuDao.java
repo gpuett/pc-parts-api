@@ -12,7 +12,7 @@ public interface CpuDao {
 
     Cpu findById(int id);
 
-    void update(int id, String manufacturer, String series, String speed, int cores, double price);
+    void update(int id, String manufacturer, String series, String speed, int cores, int price);
 
     void deleteById(int id);
 
