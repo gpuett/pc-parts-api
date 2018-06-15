@@ -33,7 +33,7 @@ public class Review implements Comparable<Review> {
 //        setCreatedAt();
 //        setFormattedCreatedAt();
 //    }
-//
+
 //    public Review(String content, String writtenBy, int rating, int memoryId) {
 //        this.content = content;
 //        this.writtenBy = writtenBy;
