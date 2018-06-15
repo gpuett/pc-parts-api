@@ -54,6 +54,9 @@ public class Sql2oTypeDaoTest {
 
     @Test
     public void getAll() {
+        Type type = setupType();
+        typeDao.add(type);
+        assertEquals(1, typeDao.getAll().size());
     }
 
     @Test
