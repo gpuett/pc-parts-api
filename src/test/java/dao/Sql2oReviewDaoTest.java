@@ -44,6 +44,9 @@ public class Sql2oReviewDaoTest {
 
     @Test
     public void getAll() {
+        Review review1 = setupReview();
+        Review review2 = setupReview();
+        assertEquals(2, reviewDao.getAll().size());
     }
 
     @Test
